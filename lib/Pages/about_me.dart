@@ -10,12 +10,16 @@ class AboutMe extends StatelessWidget {
   const AboutMe({super.key});
 
   final String aboutMe = """
-I am a Flutter developer based in Pakistan, and a final year Computer Science student with a passion for building apps. With over a year of freelancing experience on major platforms like Fiverr and Upwork, I have honed my skills in developing high-quality mobile, web, and desktop applications that meet the needs of clients from various industries.
+With over a year of freelancing experience on major platforms like Fiverr and Upwork, I have honed my skills in developing high-quality mobile, web, and desktop applications that meet the needs of clients from various industries.
 
 As someone who has also worked in software houses, I have gained valuable industry experience and developed a keen eye for detail and quality. I take pride in my ability to convert your ideas into beautiful reality, and I strive to exceed your expectations with every project. 
 
 Whether you're looking for a simple mobile app or a complex enterprise solution, I am here to help you bring your vision to life. Let's work together to create something amazing!
 
+
+""";
+  final String aboutMe1 = """
+I am a Flutter developer based in Pakistan, and a final year Computer Science student with a passion for building apps.
 
 """;
 
@@ -76,35 +80,47 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
                       ],
                     )
                   : Padding(
-                      padding: const EdgeInsets.only(top: 40),
+                      padding:
+                          const EdgeInsets.only(top: 40, left: 20, right: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          // const SizedBox(
+                          //   height: 20,
+                          // ),
+                          // Text(
+                          //   "A little back story",
+                          //   style: GoogleFonts.poppins(
+                          //     fontSize: 22,
+                          //     fontWeight: FontWeight.w600,
+                          //     color: Colors.black,
+                          //   ),
+                          // ),
+                          // const SizedBox(
+                          //   height: 10,
+                          // ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              child: skillsWidget(isDesktop)),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "A little back story",
-                            style: GoogleFonts.poppins(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                            // ),
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            //height: 500,
+                            child: Text(
+                              aboutMe1,
+                              textAlign: TextAlign.justify,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
+                          skillsWidget(isDesktop),
                           const SizedBox(
-                            height: 10,
+                            height: 40,
                           ),
                           SizedBox(
-                            // decoration: BoxDecoration(
-                            //   color: kPrimaryColor,
-                            //   borderRadius: BorderRadius.circular(15),
-
                             // ),
-                            width: 300,
-                            height: 500,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            //height: 500,
                             child: Text(
                               aboutMe,
                               textAlign: TextAlign.justify,
@@ -129,7 +145,7 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         //call the method scrollBack from MainScrollController
                         Get.find<MainScrollController>().scrollBack();
@@ -168,7 +184,7 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
@@ -179,12 +195,17 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
                             const SizedBox(
                               width: 5,
                             ),
-                            Text(
-                              "Check out some of my work",
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                            InkWell(
+                              onTap: () {
+                                Get.find<MainScrollController>().scrollTo(1);
+                              },
+                              child: Text(
+                                "Featured Projects",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],

@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haider_nawaz_portfolio_website/Pages/about_me.dart';
+import 'package:haider_nawaz_portfolio_website/Pages/contact_me.dart';
+import 'package:haider_nawaz_portfolio_website/Pages/projects_screen.dart';
 import 'package:haider_nawaz_portfolio_website/widgets/navigation_bar.dart';
 
 import 'Controllers/main_scroll_controller.dart';
@@ -43,10 +45,12 @@ class MyApp extends StatelessWidget {
                 controller: scrollController.scrollController,
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
+                  children: [
                     //TopNavigationBar(),
-                    HomePage(),
-                    AboutMe(),
+                    const HomePage(),
+                    const AboutMe(),
+                    ProjectsScreen(),
+                    ContactMeScreen(),
                   ],
                 ),
               ),

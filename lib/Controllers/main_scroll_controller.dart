@@ -16,13 +16,13 @@ class MainScrollController extends GetxController {
   }
 
   void scrollTo(int index) {
-    scrollController
-        .animateTo(
-          Get.size.width * index,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeIn,
-        )
-        .then((value) => {pageIndex.value += 1});
+    print(pageIndex);
+    scrollController.animateTo(
+      Get.size.width * (pageIndex.value + index),
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+    );
+    pageIndex.value += 1;
   }
 
   void scrollBack() {

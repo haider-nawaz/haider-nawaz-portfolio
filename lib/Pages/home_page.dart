@@ -231,36 +231,39 @@ class HomePage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    Stack(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Positioned(
-                          right: 0,
-                          child: Image.asset(
-                            "assets/flutter-logo.png",
-                            width: 80,
-                            height: 80,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Stack(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Positioned(
+                            right: 0,
+                            child: Image.asset(
+                              "assets/flutter-logo.png",
+                              width: 60,
+                              height: 60,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: SvgPicture.asset(
-                            "assets/code.svg",
-                            width: Get.size.width * 0.45,
-                            height: Get.size.height * 0.45,
-                            //color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: SvgPicture.asset(
+                              "assets/code.svg",
+                              width: Get.size.width * 0.45,
+                              height: Get.size.height * 0.45,
+                              //color: Colors.white,
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          bottom: 0,
-                          child: Image.asset(
-                            "assets/firebase.png",
-                            width: 100,
-                            height: 100,
+                          Positioned(
+                            left: 0,
+                            bottom: 0,
+                            child: Image.asset(
+                              "assets/firebase.png",
+                              width: 70,
+                              height: 70,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   ],
                 ),

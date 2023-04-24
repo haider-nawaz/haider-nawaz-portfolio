@@ -144,121 +144,126 @@ class HomePage extends StatelessWidget {
                 )
               ],
             )
-          : Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Hello, I'm",
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  const SizedBox(
-                    height: 0,
-                  ),
-                  Text("Haider Nawaz",
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w600,
-                      )),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  SizedBox(
-                    width: 320,
-                    child: Text(introLine,
-                        textAlign: TextAlign.justify,
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Hello, I'm",
                         style: GoogleFonts.poppins(
                           color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
                         )),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kPrimaryColor,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
-                          textStyle: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        child: const Text("Hire Me"),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          scrollController.scrollTo(1);
-                        },
-                        style: TextButton.styleFrom(
-                          iconColor: kPrimaryColor,
-                          backgroundColor: kPrimaryColor.withOpacity(0.1),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
-                          textStyle: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        child: Text(
-                          "More About me",
+                    const SizedBox(
+                      height: 0,
+                    ),
+                    Text("Haider Nawaz",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600,
+                        )),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      width: 320,
+                      child: Text(introLine,
+                          textAlign: TextAlign.justify,
                           style: GoogleFonts.poppins(
-                            color: kPrimaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kPrimaryColor,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            textStyle: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          child: const Text("Hire Me"),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            scrollController.scrollTo(1);
+                          },
+                          style: TextButton.styleFrom(
+                            iconColor: kPrimaryColor,
+                            backgroundColor: kPrimaryColor.withOpacity(0.1),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            textStyle: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          child: Text(
+                            "More About me",
+                            style: GoogleFonts.poppins(
+                              color: kPrimaryColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Stack(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Positioned(
-                        right: 0,
-                        child: Image.asset(
-                          "assets/flutter-logo.png",
-                          width: 80,
-                          height: 80,
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Stack(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Positioned(
+                          right: 0,
+                          child: Image.asset(
+                            "assets/flutter-logo.png",
+                            width: 80,
+                            height: 80,
+                          ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        "assets/code.svg",
-                        width: Get.size.width * 0.45,
-                        height: Get.size.height * 0.45,
-                        //color: Colors.white,
-                      ),
-                      Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: Image.asset(
-                          "assets/firebase.png",
-                          width: 100,
-                          height: 100,
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: SvgPicture.asset(
+                            "assets/code.svg",
+                            width: Get.size.width * 0.45,
+                            height: Get.size.height * 0.45,
+                            //color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        Positioned(
+                          left: 0,
+                          bottom: 0,
+                          child: Image.asset(
+                            "assets/firebase.png",
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
     );

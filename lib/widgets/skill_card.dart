@@ -31,8 +31,8 @@ class SkillCard extends StatelessWidget {
       ),
       width: !isDesktop
           ? widthFactor == 1
-              ? 280
-              : 150
+              ? 200
+              : 125
           : widthFactor == 1
               ? 320
               : 200,
@@ -46,14 +46,14 @@ class SkillCard extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  size: isDesktop ? 30 : 20,
+                  size: isDesktop ? 30 : 16,
                   color: Colors.white,
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: isDesktop ? 10 : 4),
                 Text(
                   title,
                   style: GoogleFonts.poppins(
-                    fontSize: isDesktop ? 22 : 18,
+                    fontSize: isDesktop ? 22 : 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -66,7 +66,7 @@ class SkillCard extends StatelessWidget {
               child: Text(
                 description,
                 softWrap: true,
-                textAlign: TextAlign.justify,
+                textAlign: TextAlign.start,
                 style: GoogleFonts.poppins(
                   fontSize: !isDesktop ? 14 : 16,
                   color: Colors.white,

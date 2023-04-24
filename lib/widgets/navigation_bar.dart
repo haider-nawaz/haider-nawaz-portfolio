@@ -34,16 +34,17 @@ class TopNavigationBar extends StatelessWidget {
                   ),
                 ))
             : const SizedBox(),
-        Obx(
-          () => Text(
-            scrollController.pageIndex.value == 0 ? "" : "About Me",
-            style: GoogleFonts.poppins(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: kPrimaryColor,
+        if (MediaQuery.of(context).size.width > 890)
+          Obx(
+            () => Text(
+              scrollController.pageIndex.value == 0 ? "" : "About Me",
+              style: GoogleFonts.poppins(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor,
+              ),
             ),
           ),
-        ),
         Text(
           'Made with ❤️ using Flutter',
           style: GoogleFonts.poppins(

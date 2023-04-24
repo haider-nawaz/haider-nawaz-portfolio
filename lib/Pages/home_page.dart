@@ -120,13 +120,13 @@ class HomePage extends StatelessWidget {
                     Positioned(
                       right: 0,
                       child: Image.asset(
-                        "flutter-logo.png",
+                        "assets/flutter-logo.png",
                         width: 80,
                         height: 80,
                       ),
                     ),
                     SvgPicture.asset(
-                      "code.svg",
+                      "assets/code.svg",
                       width: Get.size.width * 0.45,
                       height: Get.size.height * 0.45,
                       //color: Colors.white,
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                       left: 0,
                       bottom: 0,
                       child: Image.asset(
-                        "firebase.png",
+                        "assets/firebase.png",
                         width: 100,
                         height: 100,
                       ),
@@ -242,7 +242,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       SvgPicture.asset(
-                        "code.svg",
+                        "assets/code.svg",
                         width: Get.size.width * 0.45,
                         height: Get.size.height * 0.45,
                         //color: Colors.white,
@@ -251,7 +251,7 @@ class HomePage extends StatelessWidget {
                         left: 0,
                         bottom: 0,
                         child: Image.asset(
-                          "firebase.png",
+                          "assets/firebase.png",
                           width: 100,
                           height: 100,
                         ),

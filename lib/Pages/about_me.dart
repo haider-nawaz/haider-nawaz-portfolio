@@ -75,45 +75,48 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
                         ),
                       ],
                     )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            child: skillsWidget(isDesktop)),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "A little back story",
-                          style: GoogleFonts.poppins(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
+                  : Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: skillsWidget(isDesktop)),
+                          const SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          // decoration: BoxDecoration(
-                          //   color: kPrimaryColor,
-                          //   borderRadius: BorderRadius.circular(15),
-
-                          // ),
-                          width: 400,
-                          height: 500,
-                          child: Text(
-                            aboutMe,
-                            textAlign: TextAlign.justify,
+                          Text(
+                            "A little back story",
                             style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            // decoration: BoxDecoration(
+                            //   color: kPrimaryColor,
+                            //   borderRadius: BorderRadius.circular(15),
+
+                            // ),
+                            width: 300,
+                            height: 500,
+                            child: Text(
+                              aboutMe,
+                              textAlign: TextAlign.justify,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
               //2 bottons, 1 for going back and 1 for going forward
               //const Spacer(),
@@ -121,72 +124,75 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      //call the method scrollBack from MainScrollController
-                      Get.find<MainScrollController>().scrollBack();
-                    },
-                    child: Container(
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        //call the method scrollBack from MainScrollController
+                        Get.find<MainScrollController>().scrollBack();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.arrow_back, color: Colors.white),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Go Back",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: Colors.green,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
-                            const Icon(Icons.arrow_back, color: Colors.white),
+                            //const Icon(, color: Colors.white),
                             const SizedBox(
                               width: 5,
                             ),
                             Text(
-                              "Go Back",
+                              "Check out some of my work",
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          //const Icon(, color: Colors.white),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Check out some of my work",
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -203,17 +209,18 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
       children: [
         Row(
           children: [
-            const SkillCard(
+            SkillCard(
               title: "Flutter",
-              description:
-                  "Building production-grade apps for mobile, web, and desktop",
+              description: isDesktop
+                  ? "Building production-grade apps for mobile, web, and desktop"
+                  : "Building apps for mobile, web, and desktop",
               icon: Icons.mobile_friendly,
               color: Colors.blueAccent,
               widthFactor: 1,
               heightFactor: .1,
             ),
             const SizedBox(
-              width: 20,
+              width: 10,
             ),
             SkillCard(
               title: "Firebase",
@@ -228,22 +235,24 @@ Whether you're looking for a simple mobile app or a complex enterprise solution,
           ],
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Row(
-          children: const [
+          children: [
             SkillCard(
               title: "Dart",
-              description: "Writing clean and efficient code",
+              description: isDesktop
+                  ? "Writing clean and efficient code"
+                  : "Writing clean code",
               icon: Icons.code,
               color: Colors.black,
               widthFactor: 0,
               heightFactor: .1,
             ),
-            SizedBox(
-              width: 20,
+            const SizedBox(
+              width: 10,
             ),
-            SkillCard(
+            const SkillCard(
               title: "UI/UX",
               description: "Designing beautiful and intuitive interfaces",
               icon: Icons.design_services,

@@ -283,7 +283,7 @@ class _ContactMeScreenState extends State<ContactMeScreen> {
                                             mode: LaunchMode.platformDefault);
                                       },
                                       child: SvgPicture.asset(
-                                        'icons8-linkedin.svg',
+                                        'assets/icons8-linkedin.svg',
                                         height: 35,
                                         width: 35,
                                       ),
@@ -299,7 +299,7 @@ class _ContactMeScreenState extends State<ContactMeScreen> {
                                             mode: LaunchMode.platformDefault);
                                       },
                                       child: SvgPicture.asset(
-                                        'icons8-instagram.svg',
+                                        'assets/icons8-instagram.svg',
                                         height: 35,
                                         width: 35,
                                       ),
@@ -315,7 +315,7 @@ class _ContactMeScreenState extends State<ContactMeScreen> {
                                             mode: LaunchMode.platformDefault);
                                       },
                                       child: SvgPicture.asset(
-                                        'icons8-fiverr.svg',
+                                        'assets/icons8-fiverr.svg',
                                         height: 35,
                                         width: 35,
                                       ),
@@ -331,7 +331,7 @@ class _ContactMeScreenState extends State<ContactMeScreen> {
                                             mode: LaunchMode.platformDefault);
                                       },
                                       child: SvgPicture.asset(
-                                        'icons8-upwork-3.svg',
+                                        'assets/icons8-upwork-3.svg',
                                         height: 35,
                                         width: 35,
                                         //color: Colors.black,

@@ -44,7 +44,7 @@ class ProjectCard extends StatelessWidget {
             child: Image.asset(
               project.imageUrl,
               width: double.infinity,
-              height: 205,
+              height: 200,
               fit: BoxFit.cover,
             ),
           ),

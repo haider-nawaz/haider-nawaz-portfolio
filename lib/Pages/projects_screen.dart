@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:haider_nawaz_portfolio_website/Controllers/main_scroll_controller.dart';
 
 import '../constants.dart';
 
@@ -42,7 +44,7 @@ class ProjectCard extends StatelessWidget {
             child: Image.asset(
               project.imageUrl,
               width: double.infinity,
-              height: 220,
+              height: 205,
               fit: BoxFit.cover,
             ),
           ),
@@ -143,7 +145,9 @@ class ProjectsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.find<MainScrollController>().scrollTo(1);
+              },
               style: TextButton.styleFrom(
                 iconColor: kPrimaryColor,
                 backgroundColor: kPrimaryColor.withOpacity(0.1),

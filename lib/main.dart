@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/about_me.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/contact_me.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/projects_screen.dart';
-import 'package:haider_nawaz_portfolio_website/widgets/navigation_bar.dart';
 
 import 'Controllers/main_scroll_controller.dart';
 import 'Pages/home_page.dart';
@@ -37,24 +33,28 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        backgroundColor: const Color(0xff222122),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const TopNavigationBar(),
-            Expanded(
-              child: SingleChildScrollView(
-                controller: scrollController.scrollController,
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    //TopNavigationBar(),
-                    const HomePage(),
-                    const AboutMe(),
-                    ProjectsScreen(),
-                    ContactMeScreen(),
-                  ],
-                ),
-              ),
-            ),
+            //const TopNavigationBar(),
+            const HomePage(),
+            // Expanded(
+            //   child: SingleChildScrollView(
+            //     controller: scrollController.scrollController,
+            //     scrollDirection: Axis.horizontal,
+            //     child: Row(
+            //       children: [
+            //         //TopNavigationBar(),
+            //         const HomePage(),
+            //         const AboutMe(),
+            //         ProjectsScreen(),
+            //         ContactMeScreen(),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

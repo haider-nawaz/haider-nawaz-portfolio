@@ -21,12 +21,16 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = Get.width <= 500;
+
     return Container(
       // width: MediaQuery.of(context).size.width > 890 ? 300 : 300,
       //height: MediaQuery.of(context).size.width > 890 ? 400 : 260,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      height: isMobile ? 490 : 450,
+      //width: 350,
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xff333333),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -40,30 +44,41 @@ class ProjectCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               project.imageUrl,
               width: double.infinity,
-              height: 200,
+              height: 350,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 13),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              project.title,
-              style: GoogleFonts.poppins(
-                  fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              project.description,
-              style: GoogleFonts.poppins(),
-              textAlign: TextAlign.justify,
+            padding: !isMobile
+                ? const EdgeInsets.only(left: 17)
+                : const EdgeInsets.only(left: 7, right: 7),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  project.title,
+                  style: GoogleFonts.quicksand(
+                      color: Colors.white,
+                      fontSize: isMobile ? 21 : 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                isMobile
+                    ? const SizedBox(height: 7)
+                    : const SizedBox(height: 10),
+                Text(
+                  project.description,
+                  style: GoogleFonts.quicksand(
+                    fontSize: isMobile ? 15 : 18,
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ],
             ),
           ),
         ],
@@ -73,7 +88,7 @@ class ProjectCard extends StatelessWidget {
 }
 
 class ProjectsScreen extends StatelessWidget {
-  final List<Project> projects = [
+  static final List<Project> projects = [
     const Project(
       title: 'ANA - Ecommerce Website',
       description:
@@ -100,76 +115,25 @@ class ProjectsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      width: screenSize.width,
-      height: screenSize.height,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Featured Projects",
-            style: GoogleFonts.poppins(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    return SizedBox(
+      // height: 400,
 
-          const SizedBox(height: 16),
-          Flexible(
-            child: SizedBox(
-              //height: 400,
-              //color: Colors.red,
-              width: screenSize.width > 890
-                  ? screenSize.width * 0.9
-                  : screenSize.width,
-              child: Center(
-                child: GridView.builder(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  itemCount: projects.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: screenSize.width < 600 ? 1 : 3,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    final project = projects[index];
-                    return ProjectCard(project: project);
-                  },
-                ),
-              ),
-            ),
+      //color: Colors.red,
+      //width: 400,
+      child: Center(
+        child: GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          itemCount: 1,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: screenSize.width < 600 ? 1 : 3,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
           ),
-          //a text button to navigate to the projects page
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: TextButton(
-              onPressed: () {
-                Get.find<MainScrollController>().scrollTo(1);
-              },
-              style: TextButton.styleFrom(
-                iconColor: kPrimaryColor,
-                backgroundColor: kPrimaryColor.withOpacity(0.1),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                textStyle: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              child: Text(
-                "Let's get acquainted",
-                style: GoogleFonts.poppins(
-                  color: kPrimaryColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ],
+          itemBuilder: (BuildContext context, int index) {
+            final project = projects[index];
+            return ProjectCard(project: project);
+          },
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 {
-    "name": "haider_nawaz_portfolio_website",
-    "short_name": "haider_nawaz_portfolio_website",
+    "name": "haider_portfolio",
+    "short_name": "haider_portfolio",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

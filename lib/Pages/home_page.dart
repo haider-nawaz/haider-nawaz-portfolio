@@ -1,14 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/projects_catalog.dart';
 import 'package:haider_nawaz_portfolio_website/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../Controllers/main_scroll_controller.dart';
+import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,467 +12,408 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  List<bool> underLineList = [false, false, false];
-  final String aboutText = """
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  final List<Widget> _revolvingImages = [
+    Image.asset(
+      "assets/firebase.PNG", // Replace with small image asset
+      width: 50,
+      height: 50,
+    ),
+    Image.asset(
+      "assets/flutter-logo.PNG", // Replace with small image asset
+      width: 40,
+      height: 40,
+    ),
+    Image.asset("assets/flutterflow.PNG", // Replace with small image asset
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover),
+    Image.asset("assets/xcode.PNG", // Replace with small image asset
+        width: 60,
+        height: 60,
+        fit: BoxFit.cover),
+    Image.asset(
+      "assets/github.PNG", // Replace with small image asset
+      width: 35,
+      height: 35,
+    ),
+    Image.asset("assets/cloud.PNG", // Replace with small image asset
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover),
+    Image.asset("assets/android-studio.PNG", // Replace with small image asset
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover),
+  ];
 
-Formerly, I worked at AppCrates as a team lead and developed an e-commerce app entirely in flutter. I've been freelancing for the past year and have developed full stack applications for businesses. I'll be graduating with a Computer Science degree this year. I'm also a tech blogger and have written some articles on medium.
-""";
-  final String introLine = """
-I'm a freelance flutter developer, a tech enthusiast and a content creator. For the past 2 years I've been working with flutter and have made some amazing apps.
-""";
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 10), // Adjust rotation speed
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = Get.width <= 500;
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: isMobile
-                ? const EdgeInsets.symmetric(horizontal: 20)
-                : const EdgeInsets.symmetric(horizontal: 300),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 45,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Haider Nawaz",
-                      style: introStyle(isMobile),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _footer(),
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 1000,
+            ), // Set your desired max width
+
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              child: Column(
+                // mainAxisSize: MainAxisSize.min, // Crucial for this to work
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  headerWidget(),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  // _aboutText(),
+                  _landingWidget(context),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 40),
+                    child: Divider(
+                      color: Colors.white,
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    _navigationWidget(isMobile),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    _titleWidget(Colors.white, "Hi, I'm haider", isMobile),
-                    const SizedBox(
-                      height: 0,
-                    ),
-                    _landingWidget(isMobile),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    _aboutText(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: _titleWidget(
-                          const Color(0xffAF73BB), "Catalog", isMobile),
-                    ),
-                    const ProjectsCatalog(),
-                    _titleWidget(const Color(0xffAF73BB), "Socials", isMobile),
-                    Text(
-                      "You can find me on these platforms.",
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.quicksand(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            launchUrl(
-                                Uri.parse(
-                                    'https://www.linkedin.com/in/haider-nawaz1/'),
-                                mode: LaunchMode.platformDefault);
-                          },
-                          child: SvgPicture.asset(
-                            'assets/icons8-linkedin.svg',
-                            height: 55,
-                            width: 55,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            launchUrl(
-                                Uri.parse(
-                                    'https://www.instagram.com/haiderr.nawaz/'),
-                                mode: LaunchMode.platformDefault);
-                          },
-                          child: SvgPicture.asset(
-                            'assets/icons8-instagram.svg',
-                            height: 55,
-                            width: 55,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        // InkWell(
-                        //   onTap: () {
-                        //     launchUrl(
-                        //         Uri.parse(
-                        //             'https://www.fiverr.com/haider_nawaz'),
-                        //         mode: LaunchMode.platformDefault);
-                        //   },
-                        //   child: SvgPicture.asset(
-                        //     'assets/icons8-fiverr.svg',
-                        //     height: 55,
-                        //     width: 55,
-                        //   ),
-                        // ),
-                        // const SizedBox(
-                        //   width: 15,
-                        // ),
-                        // InkWell(
-                        //   onTap: () {
-                        //     launchUrl(
-                        //         Uri.parse(
-                        //             'https://www.upwork.com/freelancers/~01b6b1f165ad30216f'),
-                        //         mode: LaunchMode.platformDefault);
-                        //   },
-                        //   child: SvgPicture.asset(
-                        //     'assets/icons8-upwork-3.svg',
-                        //     height: 55,
-                        //     width: 55,
-                        //     //color: Colors.black,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  _workWithMeRichText(context),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  TextStyle introStyle(bool isMobile) => GoogleFonts.quicksand(
-        fontSize: isMobile ? 35 : 50,
-        fontWeight: FontWeight.bold,
-        color: const Color(0xffAF73BB),
-      );
-
-  Widget _navigationWidget(bool isMobile) {
-    return Container(
-      height: isMobile ? 40 : 50,
-      width: isMobile ? 300 : 400,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: const Color(0xffAF73BB),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          // _navigationButton("Catalog", 0, () {
-          //   Get.find<MainScrollController>().scrollTo(1);
-          // }),
-          // _navigationButton("Socials", 1, () {
-          //   //Get.find<MainScrollController>().scrollToProjects();
-          // }),
-          // _navigationButton("Consult with me", 2, () {
-          //   //Get.find<MainScrollController>().scrollToContactMe();
-          // }),
         ],
       ),
     );
   }
 
-  Widget _consultationButton() {
-    return Container(
-      height: 50,
-      width: 220,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: const Color(0xff0B6623),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            "Get a free consultation",
-            style: GoogleFonts.quicksand(
-                fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white),
-          ),
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white,
-            size: 18,
-          )
-        ],
-      ),
-    );
-  }
-
-  _navigationButton(String s, int index, Null Function() param1) {
-    return InkWell(
-      onTap: param1,
-      onHover: (value) {
-        // Make the text underline when hovered
-        setState(() {
-          underLineList[index] = value;
-        });
-      },
-      child: Text(
-        s,
-        style: GoogleFonts.quicksand(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            decoration: underLineList[index] ? TextDecoration.underline : null,
-            decorationThickness: 2,
-            decorationStyle: TextDecorationStyle.solid),
-      ),
-    );
-  }
-
-  Widget _titleWidget(Color color, String text, bool isMobile) {
-    return RichText(
-      text: TextSpan(
-        text: text,
-        style: GoogleFonts.quicksand(
-          fontSize: isMobile ? 40 : 50,
-          fontWeight: FontWeight.bold,
-          color: color,
+  Row headerWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(
+              "Haider Nawaz",
+              style: titleStyle(kPrimaryColor, true),
+            ),
+          ],
         ),
-      ),
-      // an emoji can be used directly
-    );
-  }
-
-  Widget _landingWidget(bool isMobile) {
-    //a row with some text and a svg image
-    return SizedBox(
-      //width: 800,
-      child: !isMobile
-          ? Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                    width: 310,
-                    child: Text(
-                      introLine,
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.quicksand(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        //increase the height of the line spacing
-
-                        height: 1.7,
-                      ),
-                    )),
-                const SizedBox(
-                  width: 40,
-                ),
-                Stack(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Positioned(
-                      right: 0,
-                      child: Image.asset(
-                        "assets/flutter-logo.png",
-                        width: 60,
-                        height: 60,
-                      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            //a tonal button
+            // FilledButton(
+            //     onPressed: () {}, child: Text("Get my CV")),
+            InkWell(
+                onTap: () {
+                  launchUrl(
+                    Uri.parse(
+                      'https://drive.google.com/file/d/1ssEZUqeaSDFuYodZzrcWRIl_GTtESdyA/view?usp=sharing',
                     ),
-                    SvgPicture.asset(
-                      "assets/code-purple.svg",
-                      width: 350,
-                      height: 350,
-                      //color: Colors.white,
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: 0,
-                      child: Image.asset(
-                        "assets/firebase.png",
-                        width: 80,
-                        height: 80,
-                      ),
-                    ),
-                  ],
-                ),
-                // Gif(image: AssetImage("assets/Code.gif"))
-              ],
-            )
-          : Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                    //width: 310,
-                    child: Text(
-                  introLine,
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.quicksand(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                    mode: LaunchMode.platformDefault,
+                  );
+                },
+                child: Text(
+                  "Get my CV",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
                     color: Colors.white,
-                    //increase the height of the line spacing
-
-                    height: 1.7,
                   ),
                 )),
-                const SizedBox(
-                  width: 40,
-                ),
-                Stack(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Positioned(
-                      right: 0,
-                      child: Image.asset(
-                        "assets/flutter-logo.png",
-                        width: 60,
-                        height: 60,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      "assets/code-purple.svg",
-                      width: 350,
-                      height: 350,
-                      //color: Colors.white,
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: 0,
-                      child: Image.asset(
-                        "assets/firebase.png",
-                        width: 80,
-                        height: 80,
-                      ),
-                    ),
-                  ],
-                ),
-                // Gif(image: AssetImage("assets/Code.gif"))
-              ],
+            const SizedBox(
+              width: 25,
             ),
+            InkWell(
+              onTap: () {
+                launchUrl(Uri.parse('https://github.com/haider-nawaz'),
+                    mode: LaunchMode.platformDefault);
+              },
+              child: Text(
+                "Github",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
-  Widget _aboutText() {
-    return SizedBox(
-      // width: 980,
-      child: RichText(
-        textAlign: TextAlign.justify,
-        text: TextSpan(children: [
-          TextSpan(
-            text: "Formerly, I worked at ",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              //increase the height of the line spacing
+  TextStyle titleStyle(Color color, bool isBold) => GoogleFonts.enriqueta(
+        fontSize: isBold ? 20 : 16,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+        color: color,
+      );
 
-              height: 1.7,
-            ),
+  Widget _introRichText(BuildContext context) {
+    final TextStyle defaultStyle = GoogleFonts.poppins(
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+      height: 1.7,
+    );
+
+    final TextStyle linkStyle = GoogleFonts.poppins(
+      // fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: kPrimaryColor,
+      height: 1.7,
+      decoration: TextDecoration.none, // Initial underline for links
+    );
+
+    return RichText(
+      textAlign: TextAlign.justify,
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+              text: "Hi, I'm Haider",
+              style: GoogleFonts.poppins(
+                fontSize: 16, // Adjust font size for mobile
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.7,
+              )),
+          TextSpan(
+              text:
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt over 10 apps for clients so far. Check out some of my indie projects on ",
+              style: defaultStyle),
+          _linkTextSpan(
+            "Google Play",
+            "https://play.google.com/store/apps/developer?id=Haider+Nawaz",
+            linkStyle,
+          ), // Replace with your actual link
+          TextSpan(
+              text:
+                  "\n\nI'm based in Pakistan, have worked in corporate and with international clients as well. I also do hackathons from time to time. My app ",
+              style: defaultStyle),
+          _linkTextSpan(
+              "Dr. Emma", "https://github.com/haider-nawaz/dr_emma", linkStyle),
+          TextSpan(
+              text:
+                  " won the 1st place in a GPT hackathon.\n\nOn the side, I love to post on ",
+              style: defaultStyle),
+          _linkTextSpan("Instagram", "https://www.instagram.com/forthelaymen/",
+              linkStyle),
+          TextSpan(text: " and ", style: defaultStyle),
+          _linkTextSpan(
+            "Tiktok",
+            "https://www.tiktok.com/@haider.developer",
+            linkStyle,
           ),
-          TextSpan(
-            text: "AppCrates",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: const Color(0xFFAF73BB),
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                //open the appcrates website with launch url
-
-                launchUrl(
-                    Uri(scheme: "https", host: "www.appcrates.com", path: "/"));
-              },
-          ),
-          TextSpan(
-            text:
-                " as a team lead and developed an e-commerce app entirely in flutter. I've been freelancing for the past year and have developed full stack applications for businesses. I'll be graduating with a Computer Science degree this year.",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          ),
-          TextSpan(
-            text:
-                "\nI write every now and then. I enjoy writing about software development, technology culture and new products. I have written some articles on ",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          ),
-          TextSpan(
-            text: "LinkedIn",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: const Color(0xFFAF73BB),
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          ),
-          TextSpan(
-            text: " and ",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          ),
-          TextSpan(
-            text: "Medium",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: const Color(0xFFAF73BB),
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          ),
-          TextSpan(
-            text:
-                ". I also create content around software development, flutter,  productivity and tech. ",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              //increase the height of the line spacing
-
-              height: 1.7,
-            ),
-          )
-        ]),
+        ],
       ),
     );
   }
+
+  Widget _workWithMeRichText(BuildContext context) {
+    final TextStyle defaultStyle = GoogleFonts.poppins(
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+      height: 1.7,
+    );
+
+    final TextStyle linkStyle = GoogleFonts.poppins(
+      // fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: kPrimaryColor,
+      height: 1.7,
+      decoration: TextDecoration.none, // Initial underline for links
+    );
+
+    return RichText(
+      textAlign: TextAlign.start,
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+              text: "Work With Me",
+              style: GoogleFonts.poppins(
+                fontSize: 16, // Adjust font size for mobile
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.7,
+              )),
+          TextSpan(
+              text:
+                  "\n\nI do take on client projects. You can reach out to me on ",
+              style: defaultStyle),
+          _linkTextSpan(
+            "Email",
+            "mailto:haidernawaz737@gmail.com?subject=Interested%20in%20working%20with%20you", // Encode special characters in the body
+
+            linkStyle,
+          ), // Replace with your actual link
+          TextSpan(
+              text: " or just drop a quick message on ", style: defaultStyle),
+          _linkTextSpan(
+            "Whatsapp",
+            "https://wa.me/+923098605398",
+            linkStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextSpan _linkTextSpan(String text, String url, TextStyle style) {
+    return TextSpan(
+      text: text,
+      style: style,
+      recognizer: TapGestureRecognizer()
+        ..onTap = () async {
+          final uri = Uri.parse(url);
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri);
+          } else {
+            // Handle error if the URL can't be launched
+            debugPrint("Could not launch $url");
+          }
+        },
+      mouseCursor: SystemMouseCursors.click, // Show click cursor on hover
+    );
+  }
+
+  Widget _landingWidget(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isMobile =
+            constraints.maxWidth < 600; // Adjust breakpoint as needed
+
+        return SizedBox(
+          width: constraints.maxWidth, // Occupy available width
+          child: Flex(
+            direction: isMobile ? Axis.vertical : Axis.horizontal,
+            mainAxisAlignment: isMobile
+                ? MainAxisAlignment.spaceBetween
+                : MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                // Use Flexible for better space distribution
+                flex: isMobile ? 0 : 1, // Adjust flex values as needed
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal:
+                          isMobile ? 0 : 0), // Add padding for better spacing
+                  child: SizedBox(
+                    width: isMobile
+                        ? constraints.maxWidth
+                        : constraints.maxWidth /
+                            2, // Example: half the available width on larger screens
+
+                    child: _introRichText(context),
+                  ),
+                ),
+              ),
+              if (isMobile)
+                const SizedBox(height: 20), // Space only in desktop view
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final isMobile = constraints.maxWidth < 600;
+                  const imageSize = 50.0; // Size of your revolving images
+                  const radiusMultiplier = 1; // Your current radius multiplier
+                  final avatarSize = isMobile ? 150.0 : 180.0;
+                  final stackSize = avatarSize + imageSize * radiusMultiplier;
+
+                  return SizedBox(
+                    width: stackSize,
+                    height: stackSize,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      alignment: Alignment.center,
+                      children: [
+                        ...List.generate(_revolvingImages.length, (index) {
+                          return AnimatedBuilder(
+                            animation: _controller,
+                            builder: (context, child) {
+                              final angle = 2 *
+                                      math.pi *
+                                      index /
+                                      _revolvingImages.length +
+                                  _controller.value * 2 * math.pi;
+                              final x = avatarSize / 2 * 1 * math.cos(angle);
+                              final y = avatarSize /
+                                  2 *
+                                  1 *
+                                  math.sin(
+                                      angle); //Correcting this as pointed out in chat. Sorry about that
+                              return Positioned(
+                                left: stackSize / 2 +
+                                    x -
+                                    imageSize / 2, // Offset for image size
+                                top: stackSize / 2 + y - imageSize / 2,
+                                child: child!,
+                              );
+                            },
+                            child: _revolvingImages[index],
+                          );
+                        }),
+                        Image.asset(
+                          "assets/avatar.PNG",
+                          width: avatarSize,
+                          height: avatarSize,
+                          fit: BoxFit.contain,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+
+// ... rest of your code
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+Widget _footer() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 20),
+    child: Column(
+      children: [
+        Center(
+          // Center the footer content
+          child: Text(
+            "2024   •   Haider Nawaz   •   Made with Flutter",
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              color: Colors.white.withOpacity(0.4), // Slightly muted text
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Divider(
+          color: Colors.white.withOpacity(0.4),
+          thickness: 0.5,
+        ), // Add a divider above the footer
+      ],
+    ),
+  );
 }

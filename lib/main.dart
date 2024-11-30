@@ -1,8 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'Controllers/main_scroll_controller.dart';
 import 'Pages/home_page.dart';
 
 void main() async {
@@ -24,40 +21,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final scrollController = Get.put(MainScrollController());
-
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Haider Nawaz',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xff222122),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //const TopNavigationBar(),
-            const HomePage(),
-            // Expanded(
-            //   child: SingleChildScrollView(
-            //     controller: scrollController.scrollController,
-            //     scrollDirection: Axis.horizontal,
-            //     child: Row(
-            //       children: [
-            //         //TopNavigationBar(),
-            //         const HomePage(),
-            //         const AboutMe(),
-            //         ProjectsScreen(),
-            //         ContactMeScreen(),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      ),
+      home:
+          const Scaffold(backgroundColor: Color(0xff222122), body: HomePage()),
     );
   }
 }

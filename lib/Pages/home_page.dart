@@ -94,6 +94,7 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                   _workWithMeRichText(context),
+                  Image.asset("assets/hi.png"),
                 ],
               ),
             ),
@@ -196,6 +197,7 @@ class _HomePageState extends State<HomePage>
                 color: Colors.white,
                 height: 1.7,
               )),
+
           TextSpan(
               text:
                   "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt over 10 apps for clients so far. Check out some of my indie projects on ",
@@ -206,9 +208,10 @@ class _HomePageState extends State<HomePage>
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-              text:
-                  "\n\nI'm based in Pakistan, have worked in corporate and with international clients as well. I also do hackathons from time to time. My app ",
-              style: defaultStyle),
+            text:
+                "\n\nBased in Pakistan, I've had the opportunity to work on both domestic and international projects. I also do hackathons from time to time. My app ",
+            style: defaultStyle,
+          ),
           _linkTextSpan(
               "Dr. Emma", "https://github.com/haider-nawaz/dr_emma", linkStyle),
           TextSpan(
@@ -401,7 +404,7 @@ Widget _footer() {
         Center(
           // Center the footer content
           child: Text(
-            "2024   •   Haider Nawaz   •   Made with Flutter",
+            "2025   •   Haider Nawaz   •   Built in Flutter",
             style: GoogleFonts.poppins(
               fontSize: 14,
               color: Colors.white.withOpacity(0.4), // Slightly muted text

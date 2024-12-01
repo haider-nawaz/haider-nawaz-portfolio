@@ -17,36 +17,38 @@ class _HomePageState extends State<HomePage>
   late AnimationController _controller;
   final List<Widget> _revolvingImages = [
     Image.asset(
-      "assets/firebase.png", // Replace with small image asset
+      "assets/firebase.webp", // Replace with small image asset
       width: 50,
       height: 50,
     ),
     Image.asset(
-      "assets/flutter-logo.png", // Replace with small image asset
+      "assets/flutter.webp", // Replace with small image asset
       width: 40,
       height: 40,
     ),
-    Image.asset("assets/flutterflow.png", // Replace with small image asset
+    Image.asset("assets/flutterflow.webp", // Replace with small image asset
         width: 50,
         height: 50,
         fit: BoxFit.cover),
-    Image.asset("assets/xcode.png", // Replace with small image asset
+    Image.asset("assets/xcode.webp", // Replace with small image asset
         width: 60,
         height: 60,
         fit: BoxFit.cover),
     Image.asset(
-      "assets/github.png", // Replace with small image asset
+      "assets/github.webp", // Replace with small image asset
       width: 35,
       height: 35,
     ),
-    Image.asset("assets/cloud.png", // Replace with small image asset
+    Image.asset("assets/cloud.webp", // Replace with small image asset
         width: 50,
         height: 50,
         fit: BoxFit.cover),
-    Image.asset("assets/android-studio.png", // Replace with small image asset
-        width: 50,
-        height: 50,
-        fit: BoxFit.cover),
+    Image.asset(
+      "assets/android-studio.webp", // Replace with small image asset
+      width: 50,
+      height: 50,
+      fit: BoxFit.cover,
+    ),
   ];
 
   @override
@@ -94,7 +96,6 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                   _workWithMeRichText(context),
-                  Image.asset("assets/hi.png"),
                 ],
               ),
             ),
@@ -376,7 +377,7 @@ class _HomePageState extends State<HomePage>
                           );
                         }),
                         Image.asset(
-                          "assets/avatar.png",
+                          "assets/avatar.webp",
                           width: avatarSize,
                           height: avatarSize,
                           fit: BoxFit.contain,

@@ -75,6 +75,14 @@ flutter:
     - assets/github.png
     - assets/xcode.png
     - assets/android-studio.png
+    - assets/avatar.webp
+    - assets/firebase.webp
+    - assets/flutter.webp
+    - assets/cloud.webp
+    - assets/flutterflow.webp
+    - assets/github.webp
+    - assets/xcode.webp
+    - assets/android-studio.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

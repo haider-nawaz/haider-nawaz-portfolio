@@ -17,33 +17,33 @@ class _HomePageState extends State<HomePage>
   late AnimationController _controller;
   final List<Widget> _revolvingImages = [
     Image.asset(
-      "assets/firebase.PNG", // Replace with small image asset
+      "assets/firebase.png", // Replace with small image asset
       width: 50,
       height: 50,
     ),
     Image.asset(
-      "assets/flutter-logo.PNG", // Replace with small image asset
+      "assets/flutter-logo.png", // Replace with small image asset
       width: 40,
       height: 40,
     ),
-    Image.asset("assets/flutterflow.PNG", // Replace with small image asset
+    Image.asset("assets/flutterflow.png", // Replace with small image asset
         width: 50,
         height: 50,
         fit: BoxFit.cover),
-    Image.asset("assets/xcode.PNG", // Replace with small image asset
+    Image.asset("assets/xcode.png", // Replace with small image asset
         width: 60,
         height: 60,
         fit: BoxFit.cover),
     Image.asset(
-      "assets/github.PNG", // Replace with small image asset
+      "assets/github.png", // Replace with small image asset
       width: 35,
       height: 35,
     ),
-    Image.asset("assets/cloud.PNG", // Replace with small image asset
+    Image.asset("assets/cloud.png", // Replace with small image asset
         width: 50,
         height: 50,
         fit: BoxFit.cover),
-    Image.asset("assets/android-studio.PNG", // Replace with small image asset
+    Image.asset("assets/android-studio.png", // Replace with small image asset
         width: 50,
         height: 50,
         fit: BoxFit.cover),
@@ -376,7 +376,7 @@ class _HomePageState extends State<HomePage>
                           );
                         }),
                         Image.asset(
-                          "assets/avatar.PNG",
+                          "assets/avatar.png",
                           width: avatarSize,
                           height: avatarSize,
                           fit: BoxFit.contain,

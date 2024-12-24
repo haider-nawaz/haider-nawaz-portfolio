@@ -95,6 +95,13 @@ class _HomePageState extends State<HomePage>
                       color: Colors.white,
                     ),
                   ),
+                  _currentWork(context),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 40),
+                    child: Divider(
+                      color: Colors.white,
+                    ),
+                  ),
                   _workWithMeRichText(context),
                 ],
               ),
@@ -201,7 +208,7 @@ class _HomePageState extends State<HomePage>
 
           TextSpan(
               text:
-                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt over 10 apps for clients so far. Check out some of my indie projects on ",
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 10+ apps across mobile, web, and desktop platforms. I also do indie development on the side, check some of my projects on ",
               style: defaultStyle),
           _linkTextSpan(
             "Google Play",
@@ -209,22 +216,21 @@ class _HomePageState extends State<HomePage>
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-            text:
-                "\n\nBased in Pakistan, I've had the opportunity to work on both domestic and international projects. I also do hackathons from time to time. My app ",
+            text: "\n\nI also do hackathons from time to time. My app ",
             style: defaultStyle,
           ),
           _linkTextSpan(
               "Dr. Emma", "https://github.com/haider-nawaz/dr_emma", linkStyle),
           TextSpan(
               text:
-                  " won the 1st place in a GPT hackathon.\n\nOn the side, I love to post on ",
+                  " won the 1st place in a GPT hackathon.\n\nI love to post about my work and daily life on ",
               style: defaultStyle),
           _linkTextSpan("Instagram", "https://www.instagram.com/forthelaymen/",
               linkStyle),
           TextSpan(text: " and ", style: defaultStyle),
           _linkTextSpan(
-            "Tiktok",
-            "https://www.tiktok.com/@haider.developer",
+            "Threads",
+            "https://www.threads.net/@forthelaymen",
             linkStyle,
           ),
         ],
@@ -276,6 +282,55 @@ class _HomePageState extends State<HomePage>
           _linkTextSpan(
             "Whatsapp",
             "https://wa.me/+923098605398",
+            linkStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _currentWork(BuildContext context) {
+    final TextStyle defaultStyle = GoogleFonts.poppins(
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+      height: 1.7,
+    );
+
+    final TextStyle linkStyle = GoogleFonts.poppins(
+      // fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: kPrimaryColor,
+      height: 1.7,
+      decoration: TextDecoration.none, // Initial underline for links
+    );
+
+    return RichText(
+      textAlign: TextAlign.start,
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+              text: "Current Work",
+              style: GoogleFonts.poppins(
+                fontSize: 16, // Adjust font size for mobile
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.7,
+              )),
+          TextSpan(
+              text: "\n\nI've recently launched some macOS apps, try them out",
+              style: defaultStyle),
+          _linkTextSpan(
+            "\nSalah",
+            "https://haidernawaz8.gumroad.com/l/oeviz", // Encode special characters in the body
+
+            linkStyle,
+          ), // Replace with your actual link
+          // TextSpan(text: " and ", style: defaultStyle),
+          _linkTextSpan(
+            "\nKleanly",
+            "https://haidernawaz8.gumroad.com/l/tiyffv",
             linkStyle,
           ),
         ],

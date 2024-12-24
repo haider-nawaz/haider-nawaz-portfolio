@@ -4,7 +4,8 @@
 
 ## Getting Started
 
-Check out my portfoio here: https://haider-nawaz-portfolio.web.app/#/
+Check out my wesbite here: https://haiderdev.com/
 
 
-<img width="1372" alt="image" src="https://github.com/haider-nawaz/haider-nawaz-portfolio/assets/117274118/947a3e71-c1e3-4f6e-b81c-e8a4febea1f2">
+<img width="1439" alt="Screenshot 2024-12-01 at 12 09 13" src="https://github.com/user-attachments/assets/16c955a0-4787-45ae-aea9-55b58d832ddb">
+

@@ -90,18 +90,19 @@ class _HomePageState extends State<HomePage>
                   // _aboutText(),
                   _landingWidget(context),
                   const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40),
+                    padding: EdgeInsets.symmetric(vertical: 30),
                     child: Divider(
                       color: Colors.white,
                     ),
                   ),
+
                   _currentWork(context),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40),
-                    child: Divider(
-                      color: Colors.white,
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(vertical: 30),
+                  //   child: Divider(
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                   _workWithMeRichText(context),
                 ],
               ),
@@ -134,7 +135,7 @@ class _HomePageState extends State<HomePage>
                 onTap: () {
                   launchUrl(
                     Uri.parse(
-                      'https://drive.google.com/file/d/1ssEZUqeaSDFuYodZzrcWRIl_GTtESdyA/view?usp=sharing',
+                      'https://drive.google.com/file/d/1IFaxa5lEdmI9p_CGPuW-J1TKxcvBuC2s/view?usp=sharing',
                     ),
                     mode: LaunchMode.platformDefault,
                   );
@@ -152,11 +153,55 @@ class _HomePageState extends State<HomePage>
             ),
             InkWell(
               onTap: () {
-                launchUrl(Uri.parse('https://github.com/haider-nawaz'),
-                    mode: LaunchMode.platformDefault);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: const Color(0xff222122),
+                      title: Column(
+                        children: [
+                          Text(
+                            "Socials",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 7,
+                          ),
+                          Text(
+                            "I post about my work and daily life here :)",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _socialButton(
+                              "Github", "https://github.com/haider-nawaz"),
+                          _socialButton("LinkedIn",
+                              "https://www.linkedin.com/in/haider-nawaz-565584196/"),
+                          _socialButton("Instagram",
+                              "https://www.instagram.com/forthelaymen/"),
+                          _socialButton("Threads",
+                              "https://www.threads.net/@forthelaymen"),
+                          _socialButton("Tiktok",
+                              "https://www.tiktok.com/@haider.developer"),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
               child: Text(
-                "Github",
+                "Socials",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
@@ -167,6 +212,30 @@ class _HomePageState extends State<HomePage>
           ],
         ),
       ],
+    );
+  }
+
+  Widget _socialButton(String title, String url) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: InkWell(
+        onTap: () async {
+          final uri = Uri.parse(url);
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri);
+          } else {
+            debugPrint("Could not launch $url");
+          }
+        },
+        child: Text(
+          title,
+          style: GoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+            color: kPrimaryColor, // Make sure kPrimaryColor is defined
+          ),
+        ),
+      ),
     );
   }
 
@@ -208,7 +277,7 @@ class _HomePageState extends State<HomePage>
 
           TextSpan(
               text:
-                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 10+ apps across mobile, web, and desktop platforms. I also do indie development on the side, check some of my projects on ",
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 10+ apps across mobile, web, and desktop platforms. I do indie development on the side, check some of my projects on ",
               style: defaultStyle),
           _linkTextSpan(
             "Google Play",
@@ -222,17 +291,16 @@ class _HomePageState extends State<HomePage>
           _linkTextSpan(
               "Dr. Emma", "https://github.com/haider-nawaz/dr_emma", linkStyle),
           TextSpan(
-              text:
-                  " won the 1st place in a GPT hackathon.\n\nI love to post about my work and daily life on ",
+              text: " won the 1st place in a GPT hackathon.",
               style: defaultStyle),
-          _linkTextSpan("Instagram", "https://www.instagram.com/forthelaymen/",
-              linkStyle),
-          TextSpan(text: " and ", style: defaultStyle),
-          _linkTextSpan(
-            "Threads",
-            "https://www.threads.net/@forthelaymen",
-            linkStyle,
-          ),
+          // _linkTextSpan("Instagram", "https://www.instagram.com/forthelaymen/",
+          //     linkStyle),
+          // TextSpan(text: " and ", style: defaultStyle),
+          // _linkTextSpan(
+          //   "Threads",
+          //   "https://www.threads.net/@forthelaymen",
+          //   linkStyle,
+          // ),
         ],
       ),
     );
@@ -260,7 +328,7 @@ class _HomePageState extends State<HomePage>
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
-              text: "Work With Me",
+              text: "\nWork With Me",
               style: GoogleFonts.poppins(
                 fontSize: 16, // Adjust font size for mobile
                 fontWeight: FontWeight.w500,
@@ -311,28 +379,27 @@ class _HomePageState extends State<HomePage>
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
-              text: "Current Work",
-              style: GoogleFonts.poppins(
-                fontSize: 16, // Adjust font size for mobile
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-                height: 1.7,
-              )),
-          TextSpan(
-              text: "\n\nI've recently launched some macOS apps, try them out",
+              text: "I've recently launched some macOS apps, try them out here",
               style: defaultStyle),
           _linkTextSpan(
-            "\nSalah",
+            "\n\n• Salah",
             "https://haidernawaz8.gumroad.com/l/oeviz", // Encode special characters in the body
 
             linkStyle,
           ), // Replace with your actual link
+          TextSpan(
+              text: " (Muslim prayer times right in your menubar)",
+              style: defaultStyle),
           // TextSpan(text: " and ", style: defaultStyle),
           _linkTextSpan(
-            "\nKleanly",
+            "\n• Kleanly",
             "https://haidernawaz8.gumroad.com/l/tiyffv",
             linkStyle,
           ),
+          TextSpan(
+              text:
+                  " (Disable your keyboard while cleaning so it doesn't mess up your work)",
+              style: defaultStyle),
         ],
       ),
     );

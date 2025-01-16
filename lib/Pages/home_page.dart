@@ -68,46 +68,43 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return Scaffold(
+      backgroundColor: const Color(0xff222122),
+      body: Column(
         children: [
-          _footer(),
-          ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 1000,
-            ), // Set your desired max width
-
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                // mainAxisSize: MainAxisSize.min, // Crucial for this to work
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  headerWidget(),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  // _aboutText(),
-                  _landingWidget(context),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30),
-                    child: Divider(
-                      color: Colors.white,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: 1000,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          headerWidget(),
+                          const SizedBox(height: 60),
+                          _landingWidget(context),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 30),
+                            child: Divider(color: Colors.white),
+                          ),
+                          _currentWork(context),
+                          _workWithMeRichText(context),
+                          const SizedBox(height: 50), // Add some bottom padding
+                        ],
+                      ),
                     ),
                   ),
-
-                  _currentWork(context),
-                  // const Padding(
-                  //   padding: EdgeInsets.symmetric(vertical: 30),
-                  //   child: Divider(
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
-                  _workWithMeRichText(context),
                 ],
               ),
             ),
           ),
+          _footer(), // Footer will now stay at the bottom
         ],
       ),
     );
@@ -135,13 +132,13 @@ class _HomePageState extends State<HomePage>
                 onTap: () {
                   launchUrl(
                     Uri.parse(
-                      'https://drive.google.com/file/d/1IFaxa5lEdmI9p_CGPuW-J1TKxcvBuC2s/view?usp=sharing',
+                      'https://discord.gg/FnF2aysq',
                     ),
                     mode: LaunchMode.platformDefault,
                   );
                 },
                 child: Text(
-                  "Get my CV",
+                  "Discord",
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.normal,
@@ -173,6 +170,7 @@ class _HomePageState extends State<HomePage>
                           ),
                           Text(
                             "I post about my work and daily life here :)",
+                            textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
@@ -388,7 +386,7 @@ class _HomePageState extends State<HomePage>
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-              text: " (Muslim prayer times right in your menubar)",
+              text: " - Muslim prayer times right in your menubar.",
               style: defaultStyle),
           // TextSpan(text: " and ", style: defaultStyle),
           _linkTextSpan(
@@ -398,7 +396,7 @@ class _HomePageState extends State<HomePage>
           ),
           TextSpan(
               text:
-                  " (Disable your keyboard while cleaning so it doesn't mess up your work)",
+                  " - Disable your keyboard & trackpad while cleaning so it doesn't mess up your work",
               style: defaultStyle),
         ],
       ),
@@ -521,11 +519,17 @@ class _HomePageState extends State<HomePage>
 
 Widget _footer() {
   return Padding(
-    padding: const EdgeInsets.only(top: 20),
+    padding: const EdgeInsets.only(bottom: 10),
     child: Column(
       children: [
+        Divider(
+          color: Colors.white.withOpacity(0.4),
+          thickness: 0.5,
+        ),
+        const SizedBox(height: 5),
         Center(
           // Center the footer content
+
           child: Text(
             "2025   •   Haider Nawaz   •   Built in Flutter",
             style: GoogleFonts.poppins(
@@ -534,11 +538,6 @@ Widget _footer() {
             ),
           ),
         ),
-        const SizedBox(height: 10),
-        Divider(
-          color: Colors.white.withOpacity(0.4),
-          thickness: 0.5,
-        ), // Add a divider above the footer
       ],
     ),
   );

@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:haider_nawaz_portfolio_website/Pages/Banner_Page.dart';
 import 'package:haider_nawaz_portfolio_website/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
+import 'package:flutter_animate/flutter_animate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -86,9 +88,13 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          BannerPage(),
                           headerWidget(),
                           const SizedBox(height: 60),
-                          _landingWidget(context),
+                          _landingWidget(context)
+                              .animate() // Apply animation
+                              .fadeIn(
+                                  duration: 1.seconds, curve: Curves.easeIn),
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: Divider(color: Colors.white),
@@ -128,6 +134,7 @@ class _HomePageState extends State<HomePage>
             //a tonal button
             // FilledButton(
             //     onPressed: () {}, child: Text("Get my CV")),
+
             InkWell(
                 onTap: () {
                   launchUrl(

@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class BannerPage extends StatelessWidget {
+  const BannerPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -18,7 +20,7 @@ class BannerPage extends StatelessWidget {
         var data = snapshot.data!;
         bool isVisible =
             data['isVisible'] ?? false; // Firestore visibility check
-        if (!isVisible) return SizedBox(); // Hide if isVisible is false
+        if (!isVisible) return const SizedBox(); // Hide if isVisible is false
 
         String message = data['message'] ?? '';
         String bgColor = data['backgroundColor'] ?? '#000000';
@@ -30,18 +32,11 @@ class BannerPage extends StatelessWidget {
                 maxWidth:
                     MediaQuery.of(context).size.width * 0.9, // Limit max width
               ),
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              margin: const EdgeInsets.only(top: 10, bottom: 20),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(60),
-                gradient: LinearGradient(
-                  colors: [
-                    Color(int.parse(bgColor.replaceFirst("#", "0xff"))),
-                    Colors.black87
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+                borderRadius: BorderRadius.circular(80),
+                color: Color(int.parse(bgColor.replaceAll('#', '0xFF'))),
               ),
               child: Text(
                 message,

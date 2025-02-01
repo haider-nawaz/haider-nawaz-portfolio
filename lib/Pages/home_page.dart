@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/Banner_Page.dart';
+import 'package:haider_nawaz_portfolio_website/Pages/banner_page.dart';
 import 'package:haider_nawaz_portfolio_website/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          BannerPage(),
+                          const BannerPage(),
                           headerWidget(),
                           const SizedBox(height: 60),
                           _landingWidget(context)

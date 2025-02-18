@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:haider_nawaz_portfolio_website/Pages/banner_widget.dart';
 import 'package:haider_nawaz_portfolio_website/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
+import 'package:flutter_animate/flutter_animate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,34 +19,34 @@ class _HomePageState extends State<HomePage>
   late AnimationController _controller;
   final List<Widget> _revolvingImages = [
     Image.asset(
-      "assets/firebase.webp", // Replace with small image asset
+      "assets/firebase.webp", 
       width: 50,
       height: 50,
     ),
     Image.asset(
-      "assets/flutter.webp", // Replace with small image asset
+      "assets/flutter.webp",
       width: 40,
       height: 40,
     ),
-    Image.asset("assets/flutterflow.webp", // Replace with small image asset
+    Image.asset("assets/flutterflow.webp", 
         width: 50,
         height: 50,
         fit: BoxFit.cover),
-    Image.asset("assets/xcode.webp", // Replace with small image asset
+    Image.asset("assets/xcode.webp", 
         width: 60,
         height: 60,
         fit: BoxFit.cover),
     Image.asset(
-      "assets/github.webp", // Replace with small image asset
+      "assets/github.webp", 
       width: 35,
       height: 35,
     ),
-    Image.asset("assets/cloud.webp", // Replace with small image asset
+    Image.asset("assets/cloud.webp", 
         width: 50,
         height: 50,
         fit: BoxFit.cover),
     Image.asset(
-      "assets/android-studio.webp", // Replace with small image asset
+      "assets/android-studio.webp", 
       width: 50,
       height: 50,
       fit: BoxFit.cover,
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10), // Adjust rotation speed
+      duration: const Duration(seconds: 8),
     )..repeat();
   }
 
@@ -71,10 +73,13 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       backgroundColor: const Color(0xff222122),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: SingleChildScrollView(
               child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+
                 children: [
                   ConstrainedBox(
                     constraints: const BoxConstraints(
@@ -86,9 +91,11 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const BannerWidget(),
                           headerWidget(),
                           const SizedBox(height: 60),
                           _landingWidget(context),
+
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: Divider(color: Colors.white),
@@ -106,7 +113,10 @@ class _HomePageState extends State<HomePage>
           ),
           _footer(), // Footer will now stay at the bottom
         ],
-      ),
+      )
+        .animate() // Apply animation
+        .fadeIn(
+          duration: 1.seconds, curve: Curves.easeIn),
     );
   }
 
@@ -125,20 +135,19 @@ class _HomePageState extends State<HomePage>
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            //a tonal button
-            // FilledButton(
-            //     onPressed: () {}, child: Text("Get my CV")),
+          
+
             InkWell(
                 onTap: () {
                   launchUrl(
                     Uri.parse(
-                      'https://discord.gg/FnF2aysq',
+                      'https://haidernawaz8.gumroad.com/l/tiyffv',
                     ),
                     mode: LaunchMode.platformDefault,
                   );
                 },
                 child: Text(
-                  "Discord",
+                  "Kleanly",
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.normal,
@@ -149,68 +158,91 @@ class _HomePageState extends State<HomePage>
               width: 25,
             ),
             InkWell(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      backgroundColor: const Color(0xff222122),
-                      title: Column(
-                        children: [
-                          Text(
-                            "Socials",
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 7,
-                          ),
-                          Text(
-                            "I post about my work and daily life here :)",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _socialButton(
-                              "Github", "https://github.com/haider-nawaz"),
-                          _socialButton("LinkedIn",
-                              "https://www.linkedin.com/in/haider-nawaz-565584196/"),
-                          _socialButton("Instagram",
-                              "https://www.instagram.com/forthelaymen/"),
-                          _socialButton("Threads",
-                              "https://www.threads.net/@forthelaymen"),
-                          _socialButton("Tiktok",
-                              "https://www.tiktok.com/@haider.developer"),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-              child: Text(
-                "Socials",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.white,
-                ),
-              ),
+                onTap: () {
+                  launchUrl(
+                    Uri.parse(
+                      'https://haidernawaz8.gumroad.com/l/kdrbn',
+                    ),
+                    mode: LaunchMode.platformDefault,
+                  );
+                },
+                child: Text(
+                  "Walls",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                  ),
+                )),
+            const SizedBox(
+              width: 25,
             ),
           ],
         ),
       ],
     );
+  }
+
+  GestureDetector socialsWidget() {
+    return GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: const Color(0xff222122),
+                    title: Column(
+                      children: [
+                        Text(
+                          "Socials",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          "I post about my work and daily life here :)",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _socialButton(
+                            "Github", "https://github.com/haider-nawaz"),
+                        _socialButton("LinkedIn",
+                            "https://www.linkedin.com/in/haider-nawaz-565584196/"),
+                        _socialButton("Instagram",
+                            "https://www.instagram.com/forthelaymen/"),
+                        _socialButton("Threads",
+                            "https://www.threads.net/@forthelaymen"),
+                        _socialButton("Tiktok",
+                            "https://www.tiktok.com/@haider.developer"),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+            child: Text(
+              "socials",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: kPrimaryColor,
+              ),
+            ),
+          );
   }
 
   Widget _socialButton(String title, String url) {
@@ -275,7 +307,7 @@ class _HomePageState extends State<HomePage>
 
           TextSpan(
               text:
-                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 10+ apps across mobile, web, and desktop platforms. I do indie development on the side, check some of my projects on ",
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 14+ apps for mobile, web, and desktop platforms. I do indie development on the side, check some of my projects on ",
               style: defaultStyle),
           _linkTextSpan(
             "Google Play",
@@ -283,22 +315,13 @@ class _HomePageState extends State<HomePage>
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-            text: "\n\nI also do hackathons from time to time. My app ",
+            text: "\n\nFor all of my work, check out my ",
             style: defaultStyle,
           ),
           _linkTextSpan(
-              "Dr. Emma", "https://github.com/haider-nawaz/dr_emma", linkStyle),
-          TextSpan(
-              text: " won the 1st place in a GPT hackathon.",
-              style: defaultStyle),
-          // _linkTextSpan("Instagram", "https://www.instagram.com/forthelaymen/",
-          //     linkStyle),
-          // TextSpan(text: " and ", style: defaultStyle),
-          // _linkTextSpan(
-          //   "Threads",
-          //   "https://www.threads.net/@forthelaymen",
-          //   linkStyle,
-          // ),
+              "portfolio", "https://bejewled-ticket-894.notion.site/19b76c37c72c80bb94a8f408b6ef95ba?v=19b76c37c72c81c6be52000ce35e30e8", linkStyle,),
+
+         
         ],
       ),
     );
@@ -335,21 +358,23 @@ class _HomePageState extends State<HomePage>
               )),
           TextSpan(
               text:
-                  "\n\nI do take on client projects. You can reach out to me on ",
+                  "\n\nI do take on client projects. You can reach out to me on my ",
               style: defaultStyle),
           _linkTextSpan(
-            "Email",
-            "mailto:haidernawaz737@gmail.com?subject=Interested%20in%20working%20with%20you", // Encode special characters in the body
+            "mail",
+            "mailto:haidernawaz737@gmail.com?subject=Interested%20in%20working%20with%20you",
 
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-              text: " or just drop a quick message on ", style: defaultStyle),
+              text: " or just drop a quick\nmessage on ", style: defaultStyle),
           _linkTextSpan(
             "Whatsapp",
             "https://wa.me/+923098605398",
             linkStyle,
           ),
+           TextSpan(
+              text: " with your requirements. ", style: defaultStyle),
         ],
       ),
     );
@@ -364,40 +389,74 @@ class _HomePageState extends State<HomePage>
     );
 
     final TextStyle linkStyle = GoogleFonts.poppins(
-      // fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
       fontSize: 14, // Adjust font size for mobile
       fontWeight: FontWeight.normal,
       color: kPrimaryColor,
       height: 1.7,
-      decoration: TextDecoration.none, // Initial underline for links
+      decoration: TextDecoration.none, // Underline for links
     );
 
     return RichText(
-      textAlign: TextAlign.start,
       text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-              text: "I've recently launched some macOS apps, try them out here",
-              style: defaultStyle),
-          _linkTextSpan(
-            "\n\n• Salah",
-            "https://haidernawaz8.gumroad.com/l/oeviz", // Encode special characters in the body
-
-            linkStyle,
-          ), // Replace with your actual link
-          TextSpan(
-              text: " - Muslim prayer times right in your menubar.",
-              style: defaultStyle),
-          // TextSpan(text: " and ", style: defaultStyle),
-          _linkTextSpan(
-            "\n• Kleanly",
-            "https://haidernawaz8.gumroad.com/l/tiyffv",
-            linkStyle,
+        style: defaultStyle,
+        children: [
+          const TextSpan(
+            text: "Every now and then, I post about my projects and daily life on social media. You can\nfollow me on my ",
           ),
           TextSpan(
-              text:
-                  " - Disable your keyboard & trackpad while cleaning so it doesn't mess up your work",
-              style: defaultStyle),
+            text: "socials",
+            style: linkStyle,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: const Color(0xff222122),
+                      title: Column(
+                        children: [
+                          Text(
+                            "Socials",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 7,
+                          ),
+                          Text(
+                            "I post about my work and daily life here :)",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _socialButton(
+                              "Github", "https://github.com/haider-nawaz"),
+                          _socialButton("LinkedIn",
+                              "https://www.linkedin.com/in/haider-nawaz-565584196/"),
+                          _socialButton("Instagram",
+                              "https://www.instagram.com/forthelaymen/"),
+                          _socialButton("Threads",
+                              "https://www.threads.net/@forthelaymen"),
+                          _socialButton("Tiktok",
+                              "https://www.tiktok.com/@haider.developer"),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+          ),
         ],
       ),
     );
@@ -425,10 +484,10 @@ class _HomePageState extends State<HomePage>
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile =
-            constraints.maxWidth < 600; // Adjust breakpoint as needed
+            constraints.maxWidth < 600;
 
         return SizedBox(
-          width: constraints.maxWidth, // Occupy available width
+          width: constraints.maxWidth, 
           child: Flex(
             direction: isMobile ? Axis.vertical : Axis.horizontal,
             mainAxisAlignment: isMobile
@@ -437,29 +496,29 @@ class _HomePageState extends State<HomePage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
-                // Use Flexible for better space distribution
-                flex: isMobile ? 0 : 1, // Adjust flex values as needed
+             
+                flex: isMobile ? 0 : 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal:
-                          isMobile ? 0 : 0), // Add padding for better spacing
+                          isMobile ? 0 : 0), 
                   child: SizedBox(
                     width: isMobile
                         ? constraints.maxWidth
                         : constraints.maxWidth /
-                            2, // Example: half the available width on larger screens
+                            2, 
 
                     child: _introRichText(context),
                   ),
                 ),
               ),
               if (isMobile)
-                const SizedBox(height: 20), // Space only in desktop view
+                const SizedBox(height: 20), 
               LayoutBuilder(
                 builder: (context, constraints) {
                   final isMobile = constraints.maxWidth < 600;
-                  const imageSize = 50.0; // Size of your revolving images
-                  const radiusMultiplier = 1; // Your current radius multiplier
+                  const imageSize = 50.0; 
+                  const radiusMultiplier = 1; 
                   final avatarSize = isMobile ? 150.0 : 180.0;
                   final stackSize = avatarSize + imageSize * radiusMultiplier;
 
@@ -484,11 +543,11 @@ class _HomePageState extends State<HomePage>
                                   2 *
                                   1 *
                                   math.sin(
-                                      angle); //Correcting this as pointed out in chat. Sorry about that
+                                      angle); 
                               return Positioned(
                                 left: stackSize / 2 +
                                     x -
-                                    imageSize / 2, // Offset for image size
+                                    imageSize / 2, 
                                 top: stackSize / 2 + y - imageSize / 2,
                                 child: child!,
                               );
@@ -506,8 +565,6 @@ class _HomePageState extends State<HomePage>
                     ),
                   );
                 },
-
-// ... rest of your code
               )
             ],
           ),
@@ -520,25 +577,14 @@ class _HomePageState extends State<HomePage>
 Widget _footer() {
   return Padding(
     padding: const EdgeInsets.only(bottom: 10),
-    child: Column(
-      children: [
-        Divider(
-          color: Colors.white.withOpacity(0.4),
-          thickness: 0.5,
+    child: Center(
+      child: Text(
+        "Built with Flutter",
+        style: GoogleFonts.poppins(
+          fontSize: 14,
+          color: Colors.grey, 
         ),
-        const SizedBox(height: 5),
-        Center(
-          // Center the footer content
-
-          child: Text(
-            "2025   •   Haider Nawaz   •   Built in Flutter",
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              color: Colors.white.withOpacity(0.4), // Slightly muted text
-            ),
-          ),
-        ),
-      ],
+      ),
     ),
   );
 }

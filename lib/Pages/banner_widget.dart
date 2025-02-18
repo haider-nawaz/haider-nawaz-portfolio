@@ -23,7 +23,6 @@ class BannerWidget extends StatelessWidget {
         if (!isVisible) return const SizedBox(); // Hide if isVisible is false
 
         String message = data['message'] ?? '';
-        String bgColor = data['backgroundColor'] ?? '#000000';
 
         return Center(
           child: Container(

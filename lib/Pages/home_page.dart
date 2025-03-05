@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:haider_nawaz_portfolio_website/Pages/banner_widget.dart';
 import 'package:haider_nawaz_portfolio_website/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage>
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
 
                 children: [
                   ConstrainedBox(
@@ -91,15 +90,16 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const BannerWidget(),
-                          headerWidget(),
-                          const SizedBox(height: 60),
+                          // const BannerWidget(),
+                          // headerWidget(),
+                          const SizedBox(height: 50),
                           _landingWidget(context),
 
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: Divider(color: Colors.white),
                           ),
+                          
                           _currentWork(context),
                           _workWithMeRichText(context),
                           const SizedBox(height: 50), // Add some bottom padding
@@ -132,55 +132,56 @@ class _HomePageState extends State<HomePage>
             ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-          
-
-            InkWell(
-                onTap: () {
-                  launchUrl(
-                    Uri.parse(
-                      'https://haidernawaz8.gumroad.com/l/tiyffv',
-                    ),
-                    mode: LaunchMode.platformDefault,
-                  );
-                },
-                child: Text(
-                  "Kleanly",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                  ),
-                )),
-            const SizedBox(
-              width: 25,
-            ),
-            InkWell(
-                onTap: () {
-                  launchUrl(
-                    Uri.parse(
-                      'https://haidernawaz8.gumroad.com/l/kdrbn',
-                    ),
-                    mode: LaunchMode.platformDefault,
-                  );
-                },
-                child: Text(
-                  "Walls",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                  ),
-                )),
-            const SizedBox(
-              width: 25,
-            ),
-          ],
-        ),
       ],
     );
+  }
+
+  Row navElements() {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          InkWell(
+              onTap: () {
+                launchUrl(
+                  Uri.parse(
+                    'https://haidernawaz8.gumroad.com/l/tiyffv',
+                  ),
+                  mode: LaunchMode.platformDefault,
+                );
+              },
+              child: Text(
+                "Kleanly",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
+              )),
+          const SizedBox(
+            width: 25,
+          ),
+          InkWell(
+              onTap: () {
+                launchUrl(
+                  Uri.parse(
+                    'https://haidernawaz8.gumroad.com/l/kdrbn',
+                  ),
+                  mode: LaunchMode.platformDefault,
+                );
+              },
+              child: Text(
+                "Walls",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
+              )),
+          const SizedBox(
+            width: 25,
+          ),
+        ],
+      );
   }
 
   GestureDetector socialsWidget() {
@@ -276,11 +277,20 @@ class _HomePageState extends State<HomePage>
       );
 
   Widget _introRichText(BuildContext context) {
+
     final TextStyle defaultStyle = GoogleFonts.poppins(
       fontSize: 14, // Adjust font size for mobile
       fontWeight: FontWeight.normal,
       color: Colors.white,
       height: 1.7,
+    );
+
+    final TextStyle buildHeadingStyle = GoogleFonts.poppins(
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: Colors.white54,
+      height: 1.7,
+      fontStyle: FontStyle.italic,
     );
 
     final TextStyle linkStyle = GoogleFonts.poppins(
@@ -291,6 +301,14 @@ class _HomePageState extends State<HomePage>
       height: 1.7,
       decoration: TextDecoration.none, // Initial underline for links
     );
+    final TextStyle linkStyle2 = GoogleFonts.poppins(
+      // fontSize: isMobile ? 14 : 16, // Adjust font size for mobile
+      fontSize: 14, // Adjust font size for mobile
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+      height: 1.7,
+      decoration: TextDecoration.underline, // Initial underline for links
+    );
 
     return RichText(
       textAlign: TextAlign.justify,
@@ -299,29 +317,43 @@ class _HomePageState extends State<HomePage>
           TextSpan(
               text: "Hi, I'm Haider",
               style: GoogleFonts.poppins(
-                fontSize: 16, // Adjust font size for mobile
+                fontSize: 18, // Adjust font size for mobile
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: kPrimaryColor,
                 height: 1.7,
               )),
 
           TextSpan(
               text:
-                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 14+ apps for mobile, web, and desktop platforms. I do indie development on the side, check some of my projects on ",
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 14+ apps for mobile, web, and desktop platforms. You can find most projects on my ",
               style: defaultStyle),
           _linkTextSpan(
-            "Google Play",
-            "https://play.google.com/store/apps/developer?id=Haider+Nawaz",
+            "portfolio",
+            "https://bejewled-ticket-894.notion.site/19b76c37c72c80bb94a8f408b6ef95ba?v=19b76c37c72c81c6be52000ce35e30e8",
             linkStyle,
           ), // Replace with your actual link
           TextSpan(
-            text: "\n\nFor all of my work, check out my ",
+            text: "\n\nCurrently building",
+            style: buildHeadingStyle,
+          ),
+          TextSpan(
+            text: "\n - ",
             style: defaultStyle,
           ),
           _linkTextSpan(
-              "portfolio", "https://bejewled-ticket-894.notion.site/19b76c37c72c80bb94a8f408b6ef95ba?v=19b76c37c72c81c6be52000ce35e30e8", linkStyle,),
-
-         
+            "Kleanly",
+            "https://haidernawaz8.gumroad.com/l/tiyffv",
+            linkStyle2,
+          ), 
+          TextSpan(
+            text: "\n - ",
+            style: defaultStyle,
+          ),
+          _linkTextSpan(
+            "Salah",
+            "https://haidernawaz8.gumroad.com/l/oeviz",
+            linkStyle2,
+          ), 
         ],
       ),
     );
@@ -358,7 +390,7 @@ class _HomePageState extends State<HomePage>
               )),
           TextSpan(
               text:
-                  "\n\nI do take on client projects. You can reach out to me on my ",
+                  "\n\nI do take on client projects. You can reach out to me on ",
               style: defaultStyle),
           _linkTextSpan(
             "mail",
@@ -369,7 +401,7 @@ class _HomePageState extends State<HomePage>
           TextSpan(
               text: " or just drop a quick\nmessage on ", style: defaultStyle),
           _linkTextSpan(
-            "Whatsapp",
+            "whatsapp",
             "https://wa.me/+923098605398",
             linkStyle,
           ),
@@ -576,7 +608,7 @@ class _HomePageState extends State<HomePage>
 
 Widget _footer() {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 10),
+    padding: const EdgeInsets.only(bottom: 4, top: 4),
     child: Center(
       child: Text(
         "Built with Flutter",

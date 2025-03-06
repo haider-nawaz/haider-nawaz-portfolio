@@ -325,13 +325,17 @@ class _HomePageState extends State<HomePage>
 
           TextSpan(
               text:
-                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nBuilt 14+ apps for mobile, web, and desktop platforms. You can find most projects on my ",
+                  "\n\nI build apps with Flutter, Flutterflow & SwiftUI.\n\nTop-Rated on Upwork, with 14+ apps across mobile, web, and desktop. See my ",
               style: defaultStyle),
           _linkTextSpan(
             "portfolio",
             "https://bejewled-ticket-894.notion.site/19b76c37c72c80bb94a8f408b6ef95ba?v=19b76c37c72c81c6be52000ce35e30e8",
             linkStyle,
           ), // Replace with your actual link
+          TextSpan(
+            text: " for more.",
+            style: defaultStyle,
+          ),
           TextSpan(
             text: "\n\nCurrently building",
             style: buildHeadingStyle,

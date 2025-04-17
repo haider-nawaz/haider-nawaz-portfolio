@@ -1,5 +1,5 @@
 name: haider_nawaz_portfolio_website
-description: A new Flutter project.
+description: haiderdev.com
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,11 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
-  firebase_core: ^2.10.0
   animations: ^2.0.7
   url_launcher: ^6.1.10
   flutter_native_splash: ^2.4.3
-  cloud_firestore: ^4.17.5
   flutter_animate: ^4.5.2
 
 
@@ -67,24 +65,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/
-    - assets/avatar.png
-    - assets/firebase.png
-    - assets/flutter-logo.png
-    - assets/cloud.png
-    - assets/flutterflow.png
-    - assets/github.png
-    - assets/xcode.png
-    - assets/android-studio.png
-    - assets/avatar.webp
-    - assets/firebase.webp
-    - assets/flutter.webp
-    - assets/cloud.webp
-    - assets/flutterflow.webp
-    - assets/github.webp
-    - assets/xcode.webp
-    - assets/android-studio.webp
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
